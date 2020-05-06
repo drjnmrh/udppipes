@@ -1,0 +1,8 @@
+#!/bin/sh
+
+xcodeVersion=$(xcodebuild -version | grep "Xcode" | sed 's/\(Xcode.\)\([0-9][0-9]*\)\([.].*\)/\2/g')
+if [[ "$xcodeVersion" == "10" ]]; then
+    @CMAKE_MAKE_PROGRAM@ $*
+else
+    @CMAKE_MAKE_PROGRAM@ @XCODEBUILD_EXTRA_ARGS@ $*
+fi
